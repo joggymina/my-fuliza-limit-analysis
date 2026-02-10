@@ -265,8 +265,6 @@ export default function FulizaBoostPage() {
           </div>
         </section>
 
-            </section>
-
             {/* Payment Details Modal */}
             {isModalOpen && (
               <div className="fixed inset-0 z-50 flex items-end justify-center px-4 pb-6 pt-10 sm:items-center sm:pb-10">
