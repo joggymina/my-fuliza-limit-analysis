@@ -405,12 +405,12 @@ export default function FulizaBoostPage() {
       {isReviewOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-[#e6fff2] to-[#f0fff5] px-4">
           <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl ring-1 ring-slate-200">
-            <h1 className="text-3xl font-bold text-[#0cc45f] mb-1">FulizaBoost</h1>
+            <h1 className="text-3xl font-bold text-[#0cc45f] mb-1">Fuliza Limit Boost</h1>
             <div className="h-1 bg-[#0cc45f] w-16 mx-auto mb-6 rounded-full"></div>
 
             <h2 className="text-2xl font-bold text-gray-800 mb-2">Review Request</h2>
             <p className="text-gray-600 mb-8">
-              Please confirm your selection before we initiate the STK push.
+              Please confirm your details before initiating STK push for activation.
             </p>
 
             <div className="space-y-6 mb-10">
