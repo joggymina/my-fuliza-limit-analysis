@@ -149,7 +149,7 @@ export default function FulizaBoostPage() {
           <main className="mx-auto flex w-full max-w-sm flex-col gap-3 px-4 pb-10 pt-4">
             {/* Header */}
             <header className="flex flex-col items-center gap-1">
-              <div className="text-xl font-semibold tracking-tight text-[#0cc45f]">FulizaBoost</div>
+              <div className="text-xl font-semibold tracking-tight text-[#0cc45f]">Fuliza Limit Boost</div>
               <div className="text-center text-[11px] text-slate-500">
                 Instant Limit Increase - No Paperwork - Same Day Access
               </div>
