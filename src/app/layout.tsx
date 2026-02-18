@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Fuliza M-PESA",
-  description: "Powered by Shangwe @25 promo",
+  description: "Powered by safaricom@25",
 };
 
 export default function RootLayout({
