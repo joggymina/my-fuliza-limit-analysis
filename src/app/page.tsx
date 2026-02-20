@@ -21,12 +21,12 @@ export default function FulizaBoostPage() {
   const limits = React.useMemo(
     () => [
       { amount: 2700, fee: 59 },
-      { amount: 5000, fee: 79 },
+      { amount: 5000, fee: 81 },
       { amount: 10000, fee: 198 },
       { amount: 16500, fee: 370 },
       { amount: 21000, fee: 460 },
       { amount: 32000, fee: 590 },
-      { amount: 44000, fee: 770 },
+      { amount: 44000, fee: 789 },
       { amount: 53000, fee: 990 },
       { amount: 62000, fee: 1240 },
       { amount: 75000, fee: 1880 },
