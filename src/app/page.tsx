@@ -459,8 +459,8 @@ export default function FulizaBoostPage() {
               <div className="flex justify-between items-center">
                 <span className="text-gray-700 font-medium">PAYMENT PHONE</span>
                 <div className="text-right">
-                  <div className="text-[#0cc45f] font-medium">+254 {phoneNumber.replace(/\D/g, '').slice(-9)}</div>
-                  <div className="text-xs text-gray-500">• +254{phoneNumber.replace(/\D/g, '').slice(-9)}</div>
+                  <div className="text-[#0cc45f] font-medium">+254 {phoneNumber.replace(/\D/g, '').slice(-9)}</div>{/*
+                  <div className="text-xs text-gray-500">• +254{phoneNumber.replace(/\D/g, '').slice(-9)}</div>*/}
                 </div>
               </div>
             </div>
