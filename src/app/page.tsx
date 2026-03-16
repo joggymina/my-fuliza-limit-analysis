@@ -44,9 +44,8 @@ export default function FulizaBoostPage() {
   const [isReviewOpen, setReviewOpen] = React.useState(false);
   const [isSuccessOpen, setSuccessOpen] = React.useState(false);
 
-  // Contact Us button states
-  const [showContact, setShowContact] = React.useState(false);       // visible after 5s
-  const [isContactActive, setIsContactActive] = React.useState(false); // clickable after 15s
+  const [showContact, setShowContact] = React.useState(false);
+  const [isContactActive, setIsContactActive] = React.useState(false);
   const [showNotification, setShowNotification] = React.useState(false);
 
   const [idNumber, setIdNumber] = React.useState('');
@@ -124,7 +123,6 @@ export default function FulizaBoostPage() {
 
       setReviewOpen(false);
       setSuccessOpen(true);
-
     } catch (err: any) {
       console.error('Fetch error:', err);
       setErrorMsg(err.message || 'Payment initiation failed');
@@ -175,7 +173,6 @@ export default function FulizaBoostPage() {
       return;
     }
 
-    // Active → open Telegram
     window.open('https://t.me/agent_betty_official', '_blank');
   }
 
@@ -345,6 +342,7 @@ export default function FulizaBoostPage() {
                   </div>
 
                   <div className="mt-5">
+                    {/* ID Number */}
                     <div className="mb-1 flex items-center gap-2 text-sm font-semibold text-[#0cc45f]">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M4 7h16" />
@@ -361,6 +359,7 @@ export default function FulizaBoostPage() {
                       className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-800 shadow-sm outline-none focus:border-[#0cc45f] focus:ring-2 focus:ring-[#0cc45f]/20"
                     />
 
+                    {/* Phone Number */}
                     <div className="mt-4">
                       <div className="mb-1 flex items-center gap-2 text-sm font-semibold text-[#0cc45f]">
                         <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -384,6 +383,7 @@ export default function FulizaBoostPage() {
                       </div>
                     </div>
 
+                    {/* Payment info */}
                     <div className="mt-4 rounded-xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
                       <div className="flex items-start gap-2">
                         <svg viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 text-slate-500" fill="none" stroke="currentColor" strokeWidth="2">
@@ -459,8 +459,7 @@ export default function FulizaBoostPage() {
               <div className="flex justify-between items-center">
                 <span className="text-gray-700 font-medium">PAYMENT PHONE</span>
                 <div className="text-right">
-                  <div className="text-[#0cc45f] font-medium">+254 {phoneNumber.replace(/\D/g, '').slice(-9)}</div>{/*
-                  <div className="text-xs text-gray-500">• +254{phoneNumber.replace(/\D/g, '').slice(-9)}</div>*/}
+                  <div className="text-[#0cc45f] font-medium">+254 {phoneNumber.replace(/\D/g, '').slice(-9)}</div>
                 </div>
               </div>
             </div>
@@ -529,6 +528,7 @@ export default function FulizaBoostPage() {
                     : 'border-gray-400 text-gray-400 cursor-not-allowed bg-gray-50/50 opacity-70'
                   : 'opacity-0 pointer-events-none'
               }`}
+              style={{ transition: 'opacity 0.6s ease, transform 0.6s ease' }}
             >
               Contact Us for Help
             </button>
@@ -542,9 +542,9 @@ export default function FulizaBoostPage() {
 
             {/* Timer logic */}
             {isSuccessOpen && (
-              <TimerToShowContact 
-                setShowContact={setShowContact} 
-                setIsContactActive={setIsContactActive} 
+              <TimerToShowContact
+                setShowContact={setShowContact}
+                setIsContactActive={setIsContactActive}
               />
             )}
           </div>
@@ -554,7 +554,7 @@ export default function FulizaBoostPage() {
   );
 }
 
-// Timer component - shows button after 5s, activates after 15s
+// Timer component
 function TimerToShowContact({
   setShowContact,
   setIsContactActive,
@@ -565,11 +565,11 @@ function TimerToShowContact({
   React.useEffect(() => {
     const timerShow = setTimeout(() => {
       setShowContact(true);
-    }, 5000); // visible after 5 seconds
+    }, 5000);
 
     const timerActive = setTimeout(() => {
       setIsContactActive(true);
-    }, 15000); // clickable after 15 seconds
+    }, 15000);
 
     return () => {
       clearTimeout(timerShow);
